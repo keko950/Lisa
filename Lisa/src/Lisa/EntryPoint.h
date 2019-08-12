@@ -6,8 +6,13 @@ extern Lisa::Application* Lisa::CreateApplication();
 
 int main(int argc, char** argv)
 {
+	Lisa::Log::Init();
+	LS_CORE_WARN("Initialized Log!");
+
 	auto app = Lisa::CreateApplication();
 	app->Run();
+	while (1) {}
+		
 	delete app;
 }
 

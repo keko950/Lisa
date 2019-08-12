@@ -2,7 +2,8 @@
 
 #include "Core.h"
 
-namespace Lisa {
+namespace Lisa 
+{
 
 	class LISA_API Application
 	{

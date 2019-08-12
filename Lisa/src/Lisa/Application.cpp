@@ -14,9 +14,7 @@ namespace Lisa{
 
 	void Application::Run() 
 	{
-		while (true) {
-			printf("Working");
-		}
+
 	}
 
 }
