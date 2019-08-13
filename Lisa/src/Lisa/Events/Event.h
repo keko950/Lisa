@@ -41,7 +41,7 @@ namespace Lisa
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
-		virtual std::string ToString() { return GetName(); }
+		virtual std::string ToString() const { return GetName(); }
 
 		inline bool IsInCategory(EventCategory category)
 		{
@@ -50,6 +50,11 @@ namespace Lisa
 
 	protected:
 		bool m_handled = false;
+
+	};
+
+	class EventDispatcher
+	{
 
 	};
 
