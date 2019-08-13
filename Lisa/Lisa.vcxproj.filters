@@ -4,6 +4,9 @@
     <Filter Include="Lisa">
       <UniqueIdentifier>{2E8A887C-1AC1-890D-C3AD-6F10AFC3050F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lisa\Events">
+      <UniqueIdentifier>{d422d7ee-2a92-4bed-9831-3dd6d429a074}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Lisa.h" />
@@ -19,6 +22,18 @@
     <ClInclude Include="src\Lisa\Log.h">
       <Filter>Lisa</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\Events\KeyEvent.h">
+      <Filter>Lisa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\Events\MouseEvent.h">
+      <Filter>Lisa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\Events\Event.h">
+      <Filter>Lisa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\Events\ApplicationEvent.h">
+      <Filter>Lisa\Events</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -30,5 +45,8 @@
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Lisa.rc" />
   </ItemGroup>
 </Project>

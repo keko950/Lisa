@@ -139,12 +139,19 @@
     <ClInclude Include="src\Lisa\Application.h" />
     <ClInclude Include="src\Lisa\Core.h" />
     <ClInclude Include="src\Lisa\EntryPoint.h" />
+    <ClInclude Include="src\Lisa\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Lisa\Events\Event.h" />
+    <ClInclude Include="src\Lisa\Events\KeyEvent.h" />
+    <ClInclude Include="src\Lisa\Events\MouseEvent.h" />
     <ClInclude Include="src\Lisa\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp" />
     <ClCompile Include="src\Lisa\Core.cpp" />
     <ClCompile Include="src\Lisa\Log.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Lisa.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
