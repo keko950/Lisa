@@ -22,11 +22,6 @@ namespace Lisa
 			return ss.str();
 		}
 
-		EventType GetEventType() const override
-		{
-			return EventType::WindowResized;
-		}
-
 		const char* GetName() const override 
 		{
 			return "WindowResizeEvent";
@@ -37,5 +32,21 @@ namespace Lisa
 
 	private:
 		unsigned int m_Width, m_Height;
+	};
+
+	class LISA_API WindowCloseEvent : public Event
+	{
+	public:
+		WindowCloseEvent() {};
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowCloseEvent";
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowClosed);
+		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	};
 }
