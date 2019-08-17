@@ -2,7 +2,7 @@
 
 #include "Core.h"
 #include "spdlog/spdlog.h"
-
+#include "spdlog/fmt/ostr.h"
 
 namespace Lisa
 {
@@ -30,8 +30,8 @@ namespace Lisa
 #define LS_CORE_TRACE(...) ::Lisa::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define LS_CORE_FATAL(...) ::Lisa::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
-#define LS_CLIENT_ERROR(...) ::Lisa::Log::GetClientLogger()->error(__VA_ARGS__)
-#define LS_CLIENT_WARN(...) ::Lisa::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define LS_CLIENT_INFO(...) ::Lisa::Log::GetClientLogger()->info(__VA_ARGS__)
-#define LS_CLIENT_TRACE(...) ::Lisa::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define LS_CLIENT_FATAL(...) ::Lisa::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define LS_ERROR(...) ::Lisa::Log::GetClientLogger()->error(__VA_ARGS__)
+#define LS_WARN(...) ::Lisa::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define LS_INFO(...) ::Lisa::Log::GetClientLogger()->info(__VA_ARGS__)
+#define LS_TRACE(...) ::Lisa::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define LS_FATAL(...) ::Lisa::Log::GetClientLogger()->fatal(__VA_ARGS__)
