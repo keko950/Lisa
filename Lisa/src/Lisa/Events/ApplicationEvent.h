@@ -1,9 +1,6 @@
 #pragma once
 
-#include "../Core.h"
 #include "Event.h"
-
-#include <sstream>
 
 namespace Lisa
 {
@@ -22,13 +19,8 @@ namespace Lisa
 			return ss.str();
 		}
 
-		const char* GetName() const override 
-		{
-			return "WindowResizeEvent";
-		}
-
-		EVENT_CLASS_TYPE(WindowResized);
-		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+		EVENT_CLASS_TYPE(WindowResized)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
 	private:
 		unsigned int m_Width, m_Height;
@@ -46,7 +38,55 @@ namespace Lisa
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(WindowClosed);
-		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+		EVENT_CLASS_TYPE(WindowClosed)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class LISA_API WindowFocus : public Event
+	{
+	public:
+		WindowFocus() {};
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowFocus";
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowFocus)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class LISA_API WindowLostFocus : public Event
+	{
+	public:
+		WindowLostFocus() {};
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowLostFocus";
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowLostFocus)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class LISA_API WindowMoved : public Event
+	{
+	public:
+		WindowMoved() {};
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowMoved";
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowMoved)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 }

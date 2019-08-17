@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Event.h"
-#include "../Core.h"
-
-#include <sstream>
 
 namespace Lisa
 {
@@ -46,7 +43,7 @@ namespace Lisa
 	public:
 		KeyReleasedEvent(int keycode) : KeyEvent(keycode) {};
 		
-		EVENT_CLASS_TYPE(KeyReleased);
+		EVENT_CLASS_TYPE(KeyReleased)
 
 		std::string ToString() const override
 		{
