@@ -7,12 +7,6 @@
     <Filter Include="Lisa\Events">
       <UniqueIdentifier>{523693CF-BEEB-0BC5-47E0-059CB39402C9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{7407ca5f-bc8b-499c-870c-e1a2f0321f41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{a5b7c2a3-73f4-4b18-b4f4-44ac17691e34}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Lisa.h" />
@@ -40,13 +34,10 @@
     <ClInclude Include="src\Lisa\Log.h">
       <Filter>Lisa</Filter>
     </ClInclude>
-    <ClInclude Include="src\lspch.h" />
     <ClInclude Include="src\Lisa\Window.h">
       <Filter>Lisa</Filter>
     </ClInclude>
-    <ClInclude Include="WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
-    </ClInclude>
+    <ClInclude Include="src\lspch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -59,8 +50,5 @@
       <Filter>Lisa</Filter>
     </ClCompile>
     <ClCompile Include="src\lspch.cpp" />
-    <ClCompile Include="WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

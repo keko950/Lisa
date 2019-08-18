@@ -152,7 +152,6 @@
     <ClInclude Include="src\Lisa\Log.h" />
     <ClInclude Include="src\Lisa\Window.h" />
     <ClInclude Include="src\lspch.h" />
-    <ClInclude Include="WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp" />
@@ -161,7 +160,6 @@
     <ClCompile Include="src\lspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
