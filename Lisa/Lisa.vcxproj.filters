@@ -5,7 +5,13 @@
       <UniqueIdentifier>{2E8A887C-1AC1-890D-C3AD-6F10AFC3050F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lisa\Events">
-      <UniqueIdentifier>{d422d7ee-2a92-4bed-9831-3dd6d429a074}</UniqueIdentifier>
+      <UniqueIdentifier>{523693CF-BEEB-0BC5-47E0-059CB39402C9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{7407ca5f-bc8b-499c-870c-e1a2f0321f41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{a5b7c2a3-73f4-4b18-b4f4-44ac17691e34}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -19,8 +25,11 @@
     <ClInclude Include="src\Lisa\EntryPoint.h">
       <Filter>Lisa</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lisa\Log.h">
-      <Filter>Lisa</Filter>
+    <ClInclude Include="src\Lisa\Events\ApplicationEvent.h">
+      <Filter>Lisa\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\Events\Event.h">
+      <Filter>Lisa\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Lisa\Events\KeyEvent.h">
       <Filter>Lisa\Events</Filter>
@@ -28,11 +37,15 @@
     <ClInclude Include="src\Lisa\Events\MouseEvent.h">
       <Filter>Lisa\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lisa\Events\Event.h">
-      <Filter>Lisa\Events</Filter>
+    <ClInclude Include="src\Lisa\Log.h">
+      <Filter>Lisa</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lisa\Events\ApplicationEvent.h">
-      <Filter>Lisa\Events</Filter>
+    <ClInclude Include="src\lspch.h" />
+    <ClInclude Include="src\Lisa\Window.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -45,8 +58,9 @@
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Lisa.rc" />
+    <ClCompile Include="src\lspch.cpp" />
+    <ClCompile Include="WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
