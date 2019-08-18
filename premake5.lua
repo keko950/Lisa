@@ -9,6 +9,11 @@ workspace "Lisa"
 	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Lisa/vendor/GLFW/include"
+
+include "Lisa/vendor/GLFW"
 
 project "Lisa"
 	location "Lisa"
@@ -18,6 +23,9 @@ project "Lisa"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "lspch.h"
+	pchsource "Lisa/src/lspch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -26,8 +34,15 @@ project "Lisa"
 
 	includedirs
 	{
-		"%{prj.name}/src"
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
