@@ -1,3 +1,6 @@
 [submodule "Lisa/vendor/spdlog"]
 	path = Lisa/vendor/spdlog
 	url = https://github.com/gabime/spdlog.git
+[submodule "Lisa/vendor/glfw"]
+	path = Lisa/vendor/glfw
+	url = https://github.com/keko950/glfw
