@@ -11,7 +11,6 @@ int main(int argc, char** argv)
 
 	auto app = Lisa::CreateApplication();
 	app->Run();
-	while (1) {}
 		
 	delete app;
 }

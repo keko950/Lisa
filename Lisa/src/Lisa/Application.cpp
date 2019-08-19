@@ -25,14 +25,16 @@ namespace Lisa{
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher ed(e);
-		ed.EventFn(OnCloseEvent);
+		//ed.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e) { Application::OnCloseEvent(e); return true; });
+		ed.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnCloseEvent));
+		//ed.EventFn(OnCloseEvent);
 		//ed.Dispatch(EventFn(OnCloseEvent));
 		LS_CORE_TRACE("{0}",e);
 	}
 
 	bool Application::OnCloseEvent(WindowCloseEvent &event) 
 	{
-		m_Window->~Window();
+		m_Running = false;
 		return true;
 	}
 
