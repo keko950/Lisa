@@ -64,14 +64,17 @@ project "Lisa"
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
 		symbols "On"
+		buildoptions "MDd"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
 		symbols "On"
+		buildoptions "MD"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
 		symbols "On"
+		buildoptions "MD"
 
 
 project "Sandbox"
@@ -113,11 +116,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
 		symbols "On"
+		buildoptions "MDd"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
 		symbols "On"
+		buildoptions "MD"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
 		symbols "On"
+		buildoptions "MD"

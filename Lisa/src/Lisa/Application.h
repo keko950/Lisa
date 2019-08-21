@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Events/Event.h"
 #include "Events\ApplicationEvent.h"
+#include "Lisa/LayerStack.h"
 
 namespace Lisa 
 {
@@ -17,10 +18,13 @@ namespace Lisa
 		void Run();
 
 		void OnEvent(Event& e);
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* layer);
 	private:
 		bool OnCloseEvent(WindowCloseEvent &event);
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 
 	//to be defined in client

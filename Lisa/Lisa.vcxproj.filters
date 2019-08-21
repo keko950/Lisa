@@ -47,6 +47,12 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\lspch.h" />
+    <ClInclude Include="src\Lisa\Layer.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\LayerStack.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -62,5 +68,11 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lspch.cpp" />
+    <ClCompile Include="src\Lisa\Layer.cpp">
+      <Filter>Lisa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lisa\LayerStack.cpp">
+      <Filter>Lisa</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

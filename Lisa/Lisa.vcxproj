@@ -149,6 +149,8 @@
     <ClInclude Include="src\Lisa\Events\Event.h" />
     <ClInclude Include="src\Lisa\Events\KeyEvent.h" />
     <ClInclude Include="src\Lisa\Events\MouseEvent.h" />
+    <ClInclude Include="src\Lisa\Layer.h" />
+    <ClInclude Include="src\Lisa\LayerStack.h" />
     <ClInclude Include="src\Lisa\Log.h" />
     <ClInclude Include="src\Lisa\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -157,6 +159,8 @@
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp" />
     <ClCompile Include="src\Lisa\Core.cpp" />
+    <ClCompile Include="src\Lisa\Layer.cpp" />
+    <ClCompile Include="src\Lisa\LayerStack.cpp" />
     <ClCompile Include="src\Lisa\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\lspch.cpp">

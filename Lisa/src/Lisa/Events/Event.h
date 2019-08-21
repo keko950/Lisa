@@ -1,8 +1,7 @@
 #pragma once
 
-
 #include "Lisa/Core.h"
-
+#include "lspch.h"
 namespace Lisa 
 {
 
@@ -42,13 +41,13 @@ namespace Lisa
 		virtual int GetCategoryFlags() const = 0;
 		virtual std::string ToString() const { return GetName(); }
 
+		
 		inline bool IsInCategory(EventCategory category)
 		{
 			return category & GetCategoryFlags();
 		}
-
-	protected:
-		bool m_handled = false;
+		bool Handled = false;
+		
 
 	};
 
@@ -66,7 +65,7 @@ namespace Lisa
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_handled = func(*(T*)&m_Event);
+				m_Event.Handled = func(*(T*)&m_Event);
 				return true;
 			}
 			return false;

@@ -27,6 +27,13 @@ namespace Lisa{
 		EventDispatcher ed(e);
 		//ed.Dispatch<WindowCloseEvent>([this](WindowCloseEvent& e) { Application::OnCloseEvent(e); return true; });
 		ed.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnCloseEvent));
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			if (e.Handled)
+				break;
+			(*--it)->OnEvent(e);
+		}
 		//ed.EventFn(OnCloseEvent);
 		//ed.Dispatch(EventFn(OnCloseEvent));
 		LS_CORE_TRACE("{0}",e);
@@ -38,12 +45,24 @@ namespace Lisa{
 		return true;
 	}
 
+	void Application::PushLayer(Layer* layer) 
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer) 
+	{
+		m_LayerStack.PushOverlay(layer);
+	}
+
 	void Application::Run() 
 	{
 		while(m_Running) 
 		{
 			glClearColor(1, 1, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
 
 			m_Window->OnUpdate();
 		}
