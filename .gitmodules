@@ -4,3 +4,6 @@
 [submodule "Lisa/vendor/glfw"]
 	path = Lisa/vendor/glfw
 	url = https://github.com/keko950/glfw
+[submodule "Lisa/vendor/imgui"]
+	path = Lisa/vendor/imgui
+	url = https://github.com/keko950/imgui
