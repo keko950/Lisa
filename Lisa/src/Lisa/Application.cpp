@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "Events\ApplicationEvent.h"
 #include "Log.h"
+#include "ImGui/ImGuiLayer.h"
 
 #include <glad/glad.h>
 
@@ -11,10 +12,16 @@ namespace Lisa{
 
 #define BIND_EVENT_FN(x) (std::bind(&x, this, std::placeholders::_1))
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		LS_CORE_ASSERT(!s_Instance, "Application Already Exists!")
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
 	}
 
 
@@ -48,11 +55,14 @@ namespace Lisa{
 	void Application::PushLayer(Layer* layer) 
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer) 
 	{
+		
 		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::Run() 

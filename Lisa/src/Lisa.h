@@ -6,6 +6,7 @@
 #include "Lisa/Layer.h"
 #include "Lisa/Events/Event.h"
 #include "Lisa/Log.h"
+#include "Lisa/ImGui/ImGuiLayer.h"
 
 // --- Entry Point ---
 

@@ -79,8 +79,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>lspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;LS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;IMGUI_IMPL_OPENGL_LOADER_GLAD;LS_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -101,8 +101,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>lspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;LS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;IMGUI_IMPL_OPENGL_LOADER_GLAD;LS_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -123,8 +123,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>lspch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;LS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>LS_PLATFORM_WINDOWS;LS_BUILD_DLL;GLFW_INCLUDE_NONE;IMGUI_IMPL_OPENGL_LOADER_GLAD;LS_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -149,19 +149,23 @@
     <ClInclude Include="src\Lisa\Events\Event.h" />
     <ClInclude Include="src\Lisa\Events\KeyEvent.h" />
     <ClInclude Include="src\Lisa\Events\MouseEvent.h" />
+    <ClInclude Include="src\Lisa\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Lisa\Layer.h" />
     <ClInclude Include="src\Lisa\LayerStack.h" />
     <ClInclude Include="src\Lisa\Log.h" />
     <ClInclude Include="src\Lisa\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\lspch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp" />
     <ClCompile Include="src\Lisa\Core.cpp" />
+    <ClCompile Include="src\Lisa\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Lisa\Layer.cpp" />
     <ClCompile Include="src\Lisa\LayerStack.cpp" />
     <ClCompile Include="src\Lisa\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\lspch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -173,6 +177,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\glad\GLAD.vcxproj">
       <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\IMGUI.vcxproj">
+      <Project>{606F530D-CC83-7BBE-9505-1F1E01D977EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -7,8 +7,14 @@
     <Filter Include="Lisa\Events">
       <UniqueIdentifier>{523693CF-BEEB-0BC5-47E0-059CB39402C9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Lisa\ImGui">
+      <UniqueIdentifier>{D86947EF-C421-893C-2D29-62981900242D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Lisa\Events\MouseEvent.h">
       <Filter>Lisa\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\ImGui\ImGuiLayer.h">
+      <Filter>Lisa\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lisa\Layer.h">
       <Filter>Lisa</Filter>
     </ClInclude>
@@ -48,6 +57,9 @@
     </ClInclude>
     <ClInclude Include="src\Lisa\Window.h">
       <Filter>Lisa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
@@ -61,6 +73,9 @@
     <ClCompile Include="src\Lisa\Core.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lisa\ImGui\ImGuiLayer.cpp">
+      <Filter>Lisa\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Lisa\Layer.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
@@ -69,6 +84,9 @@
     </ClCompile>
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

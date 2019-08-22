@@ -13,9 +13,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lisa/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Lisa/vendor/glad/include"
+IncludeDir["IMGUI"] = "Lisa/vendor/imgui"
 
 include "Lisa/vendor/GLFW"
 include "Lisa/vendor/glad"
+include "Lisa/vendor/imgui"
 
 project "Lisa"
 	location "Lisa"
@@ -39,14 +41,16 @@ project "Lisa"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}"
+		"%{IncludeDir.GLAD}",
+		"%{IncludeDir.IMGUI}"
 	}
 
 	links
 	{
 		"GLFW",
 		"opengl32.lib",
-		"GLAD"
+		"GLAD",
+		"IMGUI"
 	}
 
 	filter "system:windows"
@@ -58,7 +62,8 @@ project "Lisa"
 		{
 			"LS_PLATFORM_WINDOWS",
 			"LS_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
 		}
 
 		postbuildcommands

@@ -1,12 +1,12 @@
 #include <Lisa.h>
 
-
 class ExampleLayer : public Lisa::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example")
-	{}
+	{
+	}
 	
 	~ExampleLayer() 
 	{
@@ -30,8 +30,10 @@ class Sandbox : public Lisa::Application
 public:
 	Sandbox() 
 	{
-		ExampleLayer *el = new ExampleLayer;
-		this->PushLayer(el);
+		//ExampleLayer *el = new ExampleLayer;
+		Lisa::ImGuiLayer *il = new Lisa::ImGuiLayer;
+		//this->PushLayer(el);
+		this->PushLayer(il);
 	}
 
 	~Sandbox()
