@@ -12,8 +12,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lisa/vendor/GLFW/include"
+IncludeDir["GLAD"] = "Lisa/vendor/glad/include"
 
 include "Lisa/vendor/GLFW"
+include "Lisa/vendor/glad"
 
 project "Lisa"
 	location "Lisa"
@@ -36,13 +38,15 @@ project "Lisa"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.GLAD}"
 	}
 
 	links
 	{
 		"GLFW",
-		"opengl32.lib"
+		"opengl32.lib",
+		"GLAD"
 	}
 
 	filter "system:windows"
@@ -53,7 +57,8 @@ project "Lisa"
 		defines
 		{
 			"LS_PLATFORM_WINDOWS",
-			"LS_BUILD_DLL"
+			"LS_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
@@ -64,17 +69,14 @@ project "Lisa"
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
 		symbols "On"
-		buildoptions "MDd"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
 		symbols "On"
-		buildoptions "MD"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
 		symbols "On"
-		buildoptions "MD"
 
 
 project "Sandbox"
@@ -116,14 +118,11 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
 		symbols "On"
-		buildoptions "MDd"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
 		symbols "On"
-		buildoptions "MD"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
 		symbols "On"
-		buildoptions "MD"
