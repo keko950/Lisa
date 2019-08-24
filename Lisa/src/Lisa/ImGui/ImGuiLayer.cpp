@@ -90,72 +90,111 @@ namespace Lisa
 		m_Resize = false;
 	}
 
-	void ImGuiLayer::OnEvent(Event & e)
+	void ImGuiLayer::OnEvent(Event& e)
+	{
+		EventDispatcher eventDispatcher(e);
+		eventDispatcher.Dispatch<KeyPressedEvent>([this](KeyPressedEvent& e) {
+			return OnKeyPressedEvent(e);
+		});
+		eventDispatcher.Dispatch<KeyReleasedEvent>([this](KeyReleasedEvent& e) {
+			return OnKeyReleasedEvent(e);
+		});
+		eventDispatcher.Dispatch<MouseButtonPressedEvent>([this](MouseButtonPressedEvent& e) {
+			return OnMouseButtonPressedEvent(e);
+		});
+		eventDispatcher.Dispatch<MouseButtonReleasedEvent>([this](MouseButtonReleasedEvent& e) {
+			return OnMouseButtonReleasedEvent(e);
+		});
+		eventDispatcher.Dispatch<MouseScrolledEvent>([this](MouseScrolledEvent& e) {
+			return OnMouseScrolledEvent(e);
+		});
+		eventDispatcher.Dispatch<WindowResizeEvent>([this](WindowResizeEvent& e) {
+			return OnWindowResizedEvent(e);
+		});
+		eventDispatcher.Dispatch<MouseMovedEvent>([this](MouseMovedEvent& e) {
+			return OnMouseMovedEvent(e);
+		});
+		eventDispatcher.Dispatch<KeyTypedEvent>([this](KeyTypedEvent& e) {
+			return OnKeyTypedEvent(e);
+		});
+
+
+	}
+
+	bool ImGuiLayer::OnKeyPressedEvent(Event & e)
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		if (e.IsInCategory(EventCategoryKeyboard))
-		{
-			if (e.GetEventType() == KeyTypedEvent::GetStaticType())
-			{
-				KeyTypedEvent ke = (KeyTypedEvent&)e;
-				io.AddInputCharacter(ke.GetKeyCode());
-			}
-			if (e.GetEventType() == KeyPressedEvent::GetStaticType())
-			{
-				KeyPressedEvent ke = (KeyPressedEvent&)e;
-				io.KeysDown[ke.GetKeyCode()] = true;
-			}
-			else if (e.GetEventType() == KeyReleasedEvent::GetStaticType())
-			{
-				KeyReleasedEvent ke = (KeyReleasedEvent&)e;
-				io.KeysDown[ke.GetKeyCode()] = false;
-			}
+		KeyPressedEvent ke = (KeyPressedEvent&)e;
+		io.KeysDown[ke.GetKeyCode()] = true;
 
-			io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-			io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
-			io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
-			io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		return true;
+	}
+	bool ImGuiLayer::OnKeyReleasedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		KeyReleasedEvent ke = (KeyReleasedEvent&)e;
+		io.KeysDown[ke.GetKeyCode()] = false;
+		io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+		io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+		io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+		io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		return true;
+	}
+	bool ImGuiLayer::OnKeyTypedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		KeyTypedEvent ke = (KeyTypedEvent&)e;
+		io.AddInputCharacter(ke.GetKeyCode());
+		return true;
+	}
+	bool ImGuiLayer::OnMouseButtonPressedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
+		int code = me.GetMouseButton();
+		if (code >= 0 && code < 5) {
+			m_MouseButtons[code] = true;
+			io.MouseDown[code] = m_MouseButtons[code];
+			return true;
 		}
-		else if (e.IsInCategory(EventCategoryMouse))
+	}
+	bool ImGuiLayer::OnMouseButtonReleasedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
+		int code = me.GetMouseButton();
+		if (code >= 0 && code < 5) {
+			m_MouseButtons[code] = false;
+			io.MouseDown[code] = m_MouseButtons[code];
+			return true;
+		}
+	}
+	bool ImGuiLayer::OnMouseScrolledEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		MouseMovedEvent me = (MouseMovedEvent&)e;
+		io.MouseWheelH += (float)me.GetX();
+		io.MouseWheel += (float)me.GetY();
+		return true;
+	}
+	bool ImGuiLayer::OnMouseMovedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		MouseMovedEvent me = (MouseMovedEvent&)e;
+		io.MousePos = ImVec2((float)me.GetX(), (float)me.GetY());
+		return true;
+	}
+	bool ImGuiLayer::OnWindowResizedEvent(Event & e)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		if (e.GetEventType() == WindowResizeEvent::GetStaticType())
 		{
-			if (e.GetEventType() == MouseButtonPressedEvent::GetStaticType())
-			{
-				MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
-
-				int code = me.GetMouseButton();
-				if (code >= 0 && code < 5) {
-					m_MouseButtons[code] = true;
-					io.MouseDown[code] = m_MouseButtons[code];
-				}
-			}
-			else if (e.GetEventType() == MouseButtonReleasedEvent::GetStaticType())
-			{
-				MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
-				int code = me.GetMouseButton();
-				if (code >= 0 && code < 5) {
-					m_MouseButtons[code] = false;
-					io.MouseDown[code] = m_MouseButtons[code];
-				}
-			}
-			else if (e.GetEventType() == MouseMovedEvent::GetStaticType())
-			{
-				MouseMovedEvent me = (MouseMovedEvent&)e;
-				io.MousePos = ImVec2((float)me.GetX(), (float)me.GetY());
-			}
-			else if (e.GetEventType() == MouseScrolledEvent::GetStaticType())
-			{
-				MouseMovedEvent me = (MouseMovedEvent&)e;
-				io.MouseWheelH += (float)me.GetX();
-				io.MouseWheel += (float)me.GetY();
-			}
+			m_Resize = true;
 		}
-		else if (e.IsInCategory(EventCategoryApplication))
-		{
-			if (e.GetEventType() == WindowResizeEvent::GetStaticType())
-			{
-				m_Resize = true;
-			}
-		}
+		return true;
 	};
-
 }

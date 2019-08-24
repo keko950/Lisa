@@ -23,6 +23,16 @@ namespace Lisa
 		void OnEvent(Event &e);
 		
 	private:
+		bool OnKeyPressedEvent(Event& e);
+		bool OnKeyReleasedEvent(Event& e);
+		bool OnKeyTypedEvent(Event& e);
+		bool OnMouseButtonPressedEvent(Event& e);
+		bool OnMouseButtonReleasedEvent(Event& e);
+		bool OnMouseScrolledEvent(Event& e);
+		bool OnMouseMovedEvent(Event& e);
+		bool OnWindowResizedEvent(Event& e);
+
+	private:
 		float m_Time = 0.0f;
 		bool m_AnotherWindow = true;
 		GLFWwindow* m_Window;
