@@ -1,11 +1,13 @@
 #include "lspch.h"
 #include "ImGuiLayer.h"
 
-#include <GLFW\glfw3.h>
 #include <Lisa\Log.h>
 #include <imgui.h>
 #include <examples\imgui_impl_glfw.h>
 #include <Platform\OpenGL\ImGuiOpenGLRenderer.h>
+
+#include <GLFW\glfw3.h>
+#include <glad\glad.h>
 
 namespace Lisa
 {
@@ -68,6 +70,7 @@ namespace Lisa
 			io.DisplaySize = ImVec2((float)w, (float)h);
 			if (w > 0 && h > 0)
 				io.DisplayFramebufferScale = ImVec2((float)display_w / w, (float)display_h / h);
+			glViewport(0, 0, w, h);
 		}
 		
 		float time = (float)glfwGetTime();
