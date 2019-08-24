@@ -53,4 +53,19 @@ namespace Lisa
 		}
 
 	};
+
+	class LISA_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int keycode) : KeyEvent(keycode) {};
+
+		EVENT_CLASS_TYPE(KeyTyped)
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+	};
 }

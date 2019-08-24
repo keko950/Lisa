@@ -2,10 +2,10 @@
 #include "ImGuiLayer.h"
 
 #include <GLFW\glfw3.h>
+#include <Lisa\Log.h>
 #include <imgui.h>
 #include <examples\imgui_impl_glfw.h>
 #include <Platform\OpenGL\ImGuiOpenGLRenderer.h>
-#include <Lisa\Application.h>
 
 namespace Lisa
 {
@@ -23,6 +23,7 @@ namespace Lisa
 		ImGuiIO& io = ImGui::GetIO();
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
+		io.WantCaptureKeyboard = true;
 
 		// Keyboard mapping. ImGui will use those indices to peek into the io.KeysDown[] array.
 		io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
@@ -49,6 +50,8 @@ namespace Lisa
 		io.KeyMap[ImGuiKey_Z] = GLFW_KEY_Z;
 
 		ImGui_ImplOpenGL3_Init("#version 410");
+		Application& app = Application::Get();
+		m_Window = (GLFWwindow*)app.GetNativeWindow().GetNativeWindow();
 	}
 	void ImGuiLayer::OnDetach()
 	{
@@ -56,9 +59,17 @@ namespace Lisa
 	void ImGuiLayer::OnUpdate()
 	{
 		ImGuiIO& io = ImGui::GetIO();
-		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.getNativeWindow().GetWidth(), app.getNativeWindow().GetHeight());
-
+		if (m_Resize)
+		{
+			int w, h;
+			int display_w, display_h;
+			glfwGetWindowSize(m_Window, &w, &h);
+			glfwGetFramebufferSize(m_Window, &display_w, &display_h);
+			io.DisplaySize = ImVec2((float)w, (float)h);
+			if (w > 0 && h > 0)
+				io.DisplayFramebufferScale = ImVec2((float)display_w / w, (float)display_h / h);
+		}
+		
 		float time = (float)glfwGetTime();
 		io.DeltaTime = m_Time > 0.0 ? (time - m_Time) : (1.0f / 60.0f);
 		m_Time = time;
@@ -70,11 +81,81 @@ namespace Lisa
 		ImGui::ShowDemoWindow(&show);
 
 		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		for (int i = 0; i < ARRAYSIZE(m_MouseButtons); i++) {
+			m_MouseButtons[i] = false;
+			//io.MouseDown[i] = m_MouseButtons[i];
+		}
+		m_Resize = false;
 	}
+
 	void ImGuiLayer::OnEvent(Event & e)
 	{
-	}
+		ImGuiIO& io = ImGui::GetIO();
+		if (e.IsInCategory(EventCategoryKeyboard))
+		{
+			if (e.GetEventType() == KeyTypedEvent::GetStaticType())
+			{
+				KeyTypedEvent ke = (KeyTypedEvent&)e;
+				io.AddInputCharacter(ke.GetKeyCode());
+			}
+			if (e.GetEventType() == KeyPressedEvent::GetStaticType())
+			{
+				KeyPressedEvent ke = (KeyPressedEvent&)e;
+				io.KeysDown[ke.GetKeyCode()] = true;
+			}
+			else if (e.GetEventType() == KeyReleasedEvent::GetStaticType())
+			{
+				KeyReleasedEvent ke = (KeyReleasedEvent&)e;
+				io.KeysDown[ke.GetKeyCode()] = false;
+			}
+
+			io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+			io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+			io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+			io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+		}
+		else if (e.IsInCategory(EventCategoryMouse))
+		{
+			if (e.GetEventType() == MouseButtonPressedEvent::GetStaticType())
+			{
+				MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
+
+				int code = me.GetMouseButton();
+				if (code >= 0 && code < 5) {
+					m_MouseButtons[code] = true;
+					io.MouseDown[code] = m_MouseButtons[code];
+				}
+			}
+			else if (e.GetEventType() == MouseButtonReleasedEvent::GetStaticType())
+			{
+				MouseButtonPressedEvent me = (MouseButtonPressedEvent&)e;
+				int code = me.GetMouseButton();
+				if (code >= 0 && code < 5) {
+					m_MouseButtons[code] = false;
+					io.MouseDown[code] = m_MouseButtons[code];
+				}
+			}
+			else if (e.GetEventType() == MouseMovedEvent::GetStaticType())
+			{
+				MouseMovedEvent me = (MouseMovedEvent&)e;
+				io.MousePos = ImVec2((float)me.GetX(), (float)me.GetY());
+			}
+			else if (e.GetEventType() == MouseScrolledEvent::GetStaticType())
+			{
+				MouseMovedEvent me = (MouseMovedEvent&)e;
+				io.MouseWheelH += (float)me.GetX();
+				io.MouseWheel += (float)me.GetY();
+			}
+		}
+		else if (e.IsInCategory(EventCategoryApplication))
+		{
+			if (e.GetEventType() == WindowResizeEvent::GetStaticType())
+			{
+				m_Resize = true;
+			}
+		}
+	};
 
 }

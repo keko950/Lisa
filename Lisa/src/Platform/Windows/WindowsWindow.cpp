@@ -97,6 +97,15 @@ namespace Lisa
 			
 		});
 
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow *window, unsigned int keyCode)
+		{
+			WindowData data = *(WindowData*)glfwGetWindowUserPointer(window);
+			int key = int(keyCode);
+			KeyTypedEvent event(key);
+			data.EventCallback(event);
+		});
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mode)
 		{
 			WindowData data = *(WindowData*)glfwGetWindowUserPointer(window);

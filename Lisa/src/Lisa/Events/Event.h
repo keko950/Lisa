@@ -10,7 +10,7 @@ namespace Lisa
 		None = 0,
 		WindowResized, WindowClosed, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppRender, AppUpdate,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 

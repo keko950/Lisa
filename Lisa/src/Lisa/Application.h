@@ -21,7 +21,7 @@ namespace Lisa
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
 
-		inline Window& getNativeWindow() 
+		inline Window& GetNativeWindow()
 		{
 			return *m_Window;
 		}
