@@ -1,12 +1,13 @@
 #include "lspch.h"
 
 #include "Application.h"
-#include "Events\ApplicationEvent.h"
+#include "Events/ApplicationEvent.h"
 #include "Log.h"
 #include "ImGui/ImGuiLayer.h"
 
 #include <glad/glad.h>
 
+#include "Input.h"
 
 namespace Lisa{
 
@@ -36,9 +37,9 @@ namespace Lisa{
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
+			(*--it)->OnEvent(e);
 			if (e.Handled)
 				break;
-			(*--it)->OnEvent(e);
 		}
 		//ed.EventFn(OnCloseEvent);
 		//ed.Dispatch(EventFn(OnCloseEvent));
@@ -72,6 +73,8 @@ namespace Lisa{
 			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto[x, y] = Input::GetMousePosition();
 
 			m_Window->OnUpdate();
 		}

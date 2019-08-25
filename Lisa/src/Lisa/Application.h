@@ -13,7 +13,7 @@ namespace Lisa
 	{
 	public:
 		Application();
-		virtual ~Application();\
+		virtual ~Application();
 
 		void Run();
 

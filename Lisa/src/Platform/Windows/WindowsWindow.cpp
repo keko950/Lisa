@@ -5,6 +5,7 @@
 #include "Lisa\Events\ApplicationEvent.h"
 #include "Lisa/Events/KeyEvent.h"
 #include "Lisa/Events/MouseEvent.h"
+#include "WindowsInput.h"
 
 namespace Lisa
 {
@@ -50,6 +51,7 @@ namespace Lisa
 		LS_CORE_ASSERT(status, "Failed to init Glad!");
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
+		WindowsInput();
 
 		//Set GLFW Callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
