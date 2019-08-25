@@ -15,9 +15,14 @@ IncludeDir["GLFW"] = "Lisa/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Lisa/vendor/glad/include"
 IncludeDir["IMGUI"] = "Lisa/vendor/imgui"
 
+group "Dependencies"
 include "Lisa/vendor/GLFW"
 include "Lisa/vendor/glad"
 include "Lisa/vendor/imgui"
+
+group ""
+
+startproject "Sandbox"
 
 project "Lisa"
 	location "Lisa"
