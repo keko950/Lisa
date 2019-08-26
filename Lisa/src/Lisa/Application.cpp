@@ -3,7 +3,6 @@
 #include "Application.h"
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
-#include "ImGui/ImGuiLayer.h"
 
 #include <glad/glad.h>
 
@@ -22,6 +21,9 @@ namespace Lisa{
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		m_LayerStack.PushOverlay(m_ImGuiLayer);
 	}
 
 
@@ -55,14 +57,11 @@ namespace Lisa{
 	void Application::PushLayer(Layer* layer) 
 	{
 		m_LayerStack.PushLayer(layer);
-		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer) 
 	{
-		
 		m_LayerStack.PushOverlay(layer);
-		layer->OnAttach();
 	}
 
 	void Application::Run() 
@@ -74,7 +73,11 @@ namespace Lisa{
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
-			auto[x, y] = Input::GetMousePosition();
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
 		}

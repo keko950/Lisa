@@ -30,10 +30,10 @@ class Sandbox : public Lisa::Application
 public:
 	Sandbox() 
 	{
-		//ExampleLayer *el = new ExampleLayer;
-		Lisa::ImGuiLayer *il = new Lisa::ImGuiLayer;
-		//this->PushLayer(el);
-		this->PushLayer(il);
+		ExampleLayer *el = new ExampleLayer;
+		//Lisa::ImGuiLayer *il = new Lisa::ImGuiLayer;
+		this->PushLayer(el);
+		//this->PushLayer(il);
 	}
 
 	~Sandbox()

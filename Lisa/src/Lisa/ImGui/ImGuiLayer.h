@@ -6,7 +6,6 @@
 #include "Lisa/Events/KeyEvent.h"
 #include "Lisa/Events/MouseEvent.h"
 
-#include <Lisa\Application.h>
 struct GLFWwindow;
 
 namespace Lisa
@@ -15,28 +14,17 @@ namespace Lisa
 	{
 	public:
 		ImGuiLayer();
-		~ImGuiLayer();
+		~ImGuiLayer() = default;
 
-		void OnAttach();
-		void OnDetach();
-		void OnUpdate();
-		void OnEvent(Event &e);
-		
-	private:
-		bool OnKeyPressedEvent(Event& e);
-		bool OnKeyReleasedEvent(Event& e);
-		bool OnKeyTypedEvent(Event& e);
-		bool OnMouseButtonPressedEvent(Event& e);
-		bool OnMouseButtonReleasedEvent(Event& e);
-		bool OnMouseScrolledEvent(Event& e);
-		bool OnMouseMovedEvent(Event& e);
-		bool OnWindowResizedEvent(Event& e);
+		void Begin();
+		void End();
+
+		virtual void OnAttach() override;
+		virtual void OnDetach() override;
+		virtual void OnUpdate() override;
+		virtual void OnImGuiRender() override;
 
 	private:
 		float m_Time = 0.0f;
-		bool m_AnotherWindow = true;
-		GLFWwindow* m_Window;
-		bool m_Resize = true;
-		bool m_MouseButtons [5] = { false, false, false, false, false };
 	};
 }

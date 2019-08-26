@@ -46,6 +46,12 @@
     <ClInclude Include="src\Lisa\ImGui\ImGuiLayer.h">
       <Filter>Lisa\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\Input.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Lisa\KeyCodes.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lisa\Layer.h">
       <Filter>Lisa</Filter>
     </ClInclude>
@@ -55,20 +61,19 @@
     <ClInclude Include="src\Lisa\Log.h">
       <Filter>Lisa</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\MouseButtonCodes.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lisa\Window.h">
       <Filter>Lisa</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
-      <Filter>Platform\OpenGL</Filter>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\lspch.h" />
-    <ClInclude Include="src\Lisa\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Lisa\KeyCodes.h" />
-    <ClInclude Include="src\Lisa\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -76,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="src\Lisa\Core.cpp">
       <Filter>Lisa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lisa\ImGui\ImGuiBuild.cpp">
+      <Filter>Lisa\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Lisa\ImGui\ImGuiLayer.cpp">
       <Filter>Lisa\ImGui</Filter>
@@ -89,13 +97,12 @@
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
-      <Filter>Platform\OpenGL</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lspch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

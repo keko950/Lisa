@@ -47,8 +47,6 @@ namespace Lisa
 			return category & GetCategoryFlags();
 		}
 		bool Handled = false;
-		
-
 	};
 
 	class EventDispatcher
