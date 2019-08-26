@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW\glfw3.h>
-#include <Lisa\Application.h>
+#include "Lisa\Application.h"
 
 
 namespace Lisa {

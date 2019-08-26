@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Lisa\Core.h>
+#include "Lisa\Core.h"
 
 namespace Lisa
 {

@@ -151,9 +151,11 @@
     <ClInclude Include="src\Lisa\Events\MouseEvent.h" />
     <ClInclude Include="src\Lisa\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Lisa\Input.h" />
+    <ClInclude Include="src\Lisa\KeyCodes.h" />
     <ClInclude Include="src\Lisa\Layer.h" />
     <ClInclude Include="src\Lisa\LayerStack.h" />
     <ClInclude Include="src\Lisa\Log.h" />
+    <ClInclude Include="src\Lisa\MouseButtonCodes.h" />
     <ClInclude Include="src\Lisa\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Lisa\Core.h>
-#include <Lisa\Events\Event.h>
+#include "Lisa\Core.h"
+#include "Lisa\Events\Event.h"
 
 namespace Lisa
 {

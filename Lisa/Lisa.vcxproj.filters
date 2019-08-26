@@ -67,6 +67,8 @@
     <ClInclude Include="src\lspch.h" />
     <ClInclude Include="src\Lisa\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Lisa\KeyCodes.h" />
+    <ClInclude Include="src\Lisa\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
