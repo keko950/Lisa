@@ -27,8 +27,10 @@ group ""
 
 project "Lisa"
 	location "Lisa"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	staticruntime "on"
+	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,6 +42,11 @@ project "Lisa"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -70,7 +77,6 @@ project "Lisa"
 			"LS_PLATFORM_WINDOWS",
 			"LS_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
-			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
 		}
 
 		postbuildcommands
@@ -80,14 +86,17 @@ project "Lisa"
 
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
+		runtime "Release"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
+		runtime "Release"
 		symbols "On"
 
 
@@ -95,6 +104,8 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -108,7 +119,9 @@ project "Sandbox"
 	includedirs
 	{
 		"Lisa/src",
-		"Lisa/vendor/spdlog/include"
+		"Lisa/vendor/spdlog/include",
+		"%{IncludeDir.glm}",
+		"Lisa/vendor"
 	}
 
 	links
@@ -118,7 +131,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -130,11 +142,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "LS_DEBUG"
 		symbols "On"
+		runtime "Debug"
 
 	filter "configurations:Release"
 		defines "LS_RELEASE"
+		runtime "Release"
 		symbols "On"
 
 	filter "configurations:Dist"
 		defines "LS_DIST"
+		runtime "Release"
 		symbols "On"

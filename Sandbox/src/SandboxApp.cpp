@@ -1,5 +1,7 @@
 #include <Lisa.h>
 
+#include <imgui\imgui.h>
+
 class ExampleLayer : public Lisa::Layer
 {
 public:
@@ -11,6 +13,10 @@ public:
 	~ExampleLayer() 
 	{
 
+	}
+
+	void OnImGuiRender() override
+	{
 	}
 
 	void OnUpdate() override
