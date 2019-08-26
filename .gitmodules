@@ -7,3 +7,6 @@
 [submodule "Lisa/vendor/imgui"]
 	path = Lisa/vendor/imgui
 	url = https://github.com/keko950/imgui
+[submodule "Lisa/vendor/glm"]
+	path = Lisa/vendor/glm
+	url = https://github.com/keko950/glm

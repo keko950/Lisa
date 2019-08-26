@@ -8,12 +8,15 @@ workspace "Lisa"
 		"Dist"
 	}
 
+	startproject "Sandbox"
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Lisa/vendor/GLFW/include"
 IncludeDir["GLAD"] = "Lisa/vendor/glad/include"
 IncludeDir["IMGUI"] = "Lisa/vendor/imgui"
+IncludeDir["GLM"] = "Lisa/vendor/glm"
 
 group "Dependencies"
 include "Lisa/vendor/GLFW"
@@ -21,8 +24,6 @@ include "Lisa/vendor/glad"
 include "Lisa/vendor/imgui"
 
 group ""
-
-startproject "Sandbox"
 
 project "Lisa"
 	location "Lisa"
@@ -47,7 +48,8 @@ project "Lisa"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.IMGUI}"
+		"%{IncludeDir.IMGUI}",
+		"%{IncludeDir.GLM}"
 	}
 
 	links
