@@ -1,6 +1,6 @@
 workspace "Lisa"
 	architecture "x64"
-
+	startproject "Sandbox"
 	configurations 
 	{
 		"Debug",
@@ -8,7 +8,6 @@ workspace "Lisa"
 		"Dist"
 	}
 
-	startproject "Sandbox"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
