@@ -1,15 +1,19 @@
 #pragma once
 
 #ifdef LS_PLATFORM_WINDOWS
-	#ifdef LS_BUILD_DLL
-		#define LISA_API __declspec(dllexport)
+	#ifdef LS_DYNAMIC_LINK
+		#ifdef LS_BUILD_DLL
+			#define LISA_API __declspec(dllexport)
+		#else
+			#define LISA_API __declspec(dllimport)
+		#endif
 	#else
-		#define LISA_API __declspec(dllimport)
+		#define LISA_API
 	#endif
 #else 
 	#error Lisa only support Windows
-#endif
 
+#endif
 #ifdef LS_DEBUG
 	#define LS_ENABLE_ASSERTS
 #endif
