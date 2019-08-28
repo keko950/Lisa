@@ -3,8 +3,9 @@
 #include "Lisa\Core.h"
 #include "Lisa\Window.h"
 
-#include <GLFW/glfw3.h>
-#include <glad\glad.h>
+#include <Lisa\Renderer\GraphicsContext.h>
+
+struct GLFWwindow;
 
 namespace Lisa 
 {
@@ -30,6 +31,8 @@ namespace Lisa
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
+		
 		struct WindowData
 		{
 			std::string Title;

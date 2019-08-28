@@ -7,6 +7,10 @@
 #include "Lisa/Events/MouseEvent.h"
 #include "WindowsInput.h"
 
+#include <GLFW/glfw3.h>
+
+#include "Platform\OpenGL\OpenGLContext.h"
+
 namespace Lisa
 {
 	static bool s_GLFWInitialized = false;
@@ -46,12 +50,11 @@ namespace Lisa
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		LS_CORE_ASSERT(status, "Failed to init Glad!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
-		WindowsInput();
 
 		//Set GLFW Callbacks
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
@@ -150,7 +153,7 @@ namespace Lisa
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
