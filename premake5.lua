@@ -28,7 +28,7 @@ project "Lisa"
 	location "Lisa"
 	kind "StaticLib"
 	language "C++"
-	staticruntime "on"
+	staticruntime "On"
 	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
