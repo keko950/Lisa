@@ -18,9 +18,9 @@ IncludeDir["IMGUI"] = "Lisa/vendor/imgui"
 IncludeDir["GLM"] = "Lisa/vendor/glm"
 
 group "Dependencies"
-include "Lisa/vendor/GLFW"
-include "Lisa/vendor/glad"
-include "Lisa/vendor/imgui"
+	include "Lisa/vendor/GLFW"
+	include "Lisa/vendor/glad"
+	include "Lisa/vendor/imgui"
 
 group ""
 
@@ -45,7 +45,9 @@ project "Lisa"
 
 	defines
 	{
-		"_CRT_SECURE_NO_WARNINGS"
+		"_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE",
+		"LS_BUILD_DLL"
 	}
 
 	includedirs
@@ -73,9 +75,7 @@ project "Lisa"
 
 		defines
 		{
-			"LS_PLATFORM_WINDOWS",
-			"LS_BUILD_DLL",
-			"GLFW_INCLUDE_NONE",
+			"LS_PLATFORM_WINDOWS"
 		}
 
 		postbuildcommands
@@ -117,10 +117,10 @@ project "Sandbox"
 
 	includedirs
 	{
-		"Lisa/src",
 		"Lisa/vendor/spdlog/include",
-		"%{IncludeDir.glm}",
-		"Lisa/vendor"
+		"Lisa/src",
+		"Lisa/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links

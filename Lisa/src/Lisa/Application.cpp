@@ -4,6 +4,8 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
+#include "Lisa/Renderer/Shader.h"
+
 #include <glad/glad.h>
 
 #include "Input.h"
@@ -25,33 +27,56 @@ namespace Lisa{
 		m_ImGuiLayer = new ImGuiLayer();
 		m_LayerStack.PushOverlay(m_ImGuiLayer);
 
+		std::string vertexShader = R"(
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aColor;
+
+// out vec3 ourColor;
+out vec3 ourPosition;
+
+void main()
+{
+    gl_Position = vec4(aPos, 1.0); 
+    // ourColor = aColor;
+    ourPosition = aPos;
+}
+
+)";
+
+		std::string fragmentShader = R"(
+#version 330 core
+out vec4 FragColor;
+// in vec3 ourColor;
+in vec3 ourPosition;
+
+void main()
+{
+    FragColor = vec4(ourPosition, 1.0);    // note how the position value is linearly interpolated to get all the different colors
+}
+)";
 		glGenVertexArrays(1, &m_VertexArray);
 		glBindVertexArray(m_VertexArray);
 
 		glGenBuffers(1, &m_VertexBuffer);
 		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
 
-		float vertices[3 * 3] =
+		float vertices[3 * 6] =
 		{
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.f, 0.5f, 0.f
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+			0.f, 0.5f, 0.f,    0.0f, 0.0f, 1.0f
 		};
 
 		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void*)0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, nullptr);
 
-		glGenBuffers(1, &m_IndexBuffer);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer);
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void *) (sizeof(float) * 3));
+		glEnableVertexAttribArray(1);
 
-		unsigned int indices[3] =
-		{
-			0,1,2
-		};
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-
+		m_Shader = std::make_unique<Shader>(vertexShader, fragmentShader);
 	}
 
 
@@ -98,11 +123,12 @@ namespace Lisa{
 		{
 			glClearColor(0.1f, 0.1f, 0.1f, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
-
+			m_Shader->Bind();
 			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+			//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
-			for (Layer* layer : m_LayerStack)
+ 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_ImGuiLayer->Begin();
