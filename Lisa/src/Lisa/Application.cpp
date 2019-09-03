@@ -4,7 +4,7 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
-#include "Lisa/Renderer/Shader.h"
+#include "Platform\OpenGL\OpenGLShader.h"
 #include "File.h"
 
 #include <glad/glad.h>
@@ -49,8 +49,7 @@ namespace Lisa {
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void *) (sizeof(float) * 3));
 		glEnableVertexAttribArray(1);
 
-		
-		m_Shader = std::make_unique<Shader>(File.Read(), fragmentShader);
+		m_Shader = new OpenGLShader(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader"));
 	}
 
 

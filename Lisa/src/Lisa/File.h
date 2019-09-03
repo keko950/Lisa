@@ -6,7 +6,7 @@
 
 namespace Lisa
 {
-	static class LISA_API File
+	class LISA_API File
 	{
 	public:
 		File();

@@ -3,7 +3,7 @@
 #include "Lisa/Renderer/Shader.h"
 
 namespace Lisa {
-	class LISA_API OpenGLShader : Shader
+	class LISA_API OpenGLShader : public Shader
 	{
 	public:
 		OpenGLShader(const std::string vertexPath, const std::string fragmentPath);

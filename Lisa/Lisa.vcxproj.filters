@@ -86,6 +86,8 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\lspch.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Lisa\File.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -109,9 +111,6 @@
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
-    <ClCompile Include="src\Lisa\Renderer\Shader.cpp">
-      <Filter>Lisa\Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
@@ -122,5 +121,7 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lspch.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Lisa\File.cpp" />
   </ItemGroup>
 </Project>
