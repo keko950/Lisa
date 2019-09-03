@@ -9,14 +9,14 @@ namespace Lisa
 	class LISA_API Shader
 	{
 	public:
-		Shader(const std::string vertexPath, const std::string fragmentPath);
-		~Shader();
+		Shader() {};
+		~Shader() = default;
 
 		// use/activate the shader
-		virtual void Bind() const;
-		virtual void Unbind() const;
+		virtual void Bind() const {};
+		virtual void UnBind() const {};
 
-	private:
+	protected:
 		uint32_t m_RenderId;
 	};
 }

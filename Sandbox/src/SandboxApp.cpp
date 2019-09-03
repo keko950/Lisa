@@ -21,7 +21,7 @@ public:
 
 	void OnUpdate() override
 	{
-		LS_INFO("HELLO");
+		//LS_INFO("HELLO");
 	}
 
 	void OnEvent(Lisa::Event& e) override

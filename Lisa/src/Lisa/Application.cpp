@@ -5,12 +5,13 @@
 #include "Log.h"
 
 #include "Lisa/Renderer/Shader.h"
+#include "File.h"
 
 #include <glad/glad.h>
 
 #include "Input.h"
 
-namespace Lisa{
+namespace Lisa {
 
 #define BIND_EVENT_FN(x) (std::bind(&x, this, std::placeholders::_1))
 
@@ -27,34 +28,6 @@ namespace Lisa{
 		m_ImGuiLayer = new ImGuiLayer();
 		m_LayerStack.PushOverlay(m_ImGuiLayer);
 
-		std::string vertexShader = R"(
-#version 330 core
-layout (location = 0) in vec3 aPos;
-layout (location = 1) in vec3 aColor;
-
-// out vec3 ourColor;
-out vec3 ourPosition;
-
-void main()
-{
-    gl_Position = vec4(aPos, 1.0); 
-    // ourColor = aColor;
-    ourPosition = aPos;
-}
-
-)";
-
-		std::string fragmentShader = R"(
-#version 330 core
-out vec4 FragColor;
-// in vec3 ourColor;
-in vec3 ourPosition;
-
-void main()
-{
-    FragColor = vec4(ourPosition, 1.0);    // note how the position value is linearly interpolated to get all the different colors
-}
-)";
 		glGenVertexArrays(1, &m_VertexArray);
 		glBindVertexArray(m_VertexArray);
 
@@ -76,7 +49,8 @@ void main()
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void *) (sizeof(float) * 3));
 		glEnableVertexAttribArray(1);
 
-		m_Shader = std::make_unique<Shader>(vertexShader, fragmentShader);
+		
+		m_Shader = std::make_unique<Shader>(File.Read(), fragmentShader);
 	}
 
 
