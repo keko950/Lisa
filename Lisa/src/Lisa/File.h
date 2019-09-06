@@ -6,13 +6,15 @@
 
 namespace Lisa
 {
-	class LISA_API File
+	namespace File
 	{
-	public:
-		File();
-		~File();
-
-		static std::string Read(const std::string path);
-
-	};
+		std::string Read(const std::string path)
+		{
+			std::ifstream ifs(path);
+			std::string content((std::istreambuf_iterator<char>(ifs)),
+				(std::istreambuf_iterator<char>()));
+			return content;
+		}
+	}
 }
+
