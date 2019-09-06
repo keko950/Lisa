@@ -6,6 +6,7 @@
 #include "Events\ApplicationEvent.h"
 #include "Lisa/LayerStack.h"
 #include "Lisa/ImGui/ImGuiLayer.h"
+#include "Lisa/Renderer/Buffer.h"
 
 #include <Lisa\Renderer\Shader.h>
 
@@ -36,6 +37,7 @@ namespace Lisa
 
 	private:
 		ImGuiLayer* m_ImGuiLayer;
+		VertexBuffer* m_Vb;
 		bool OnCloseEvent(WindowCloseEvent &event);
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;

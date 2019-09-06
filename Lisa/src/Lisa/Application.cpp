@@ -4,7 +4,6 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
-#include "Platform\OpenGL\OpenGLShader.h"
 #include "File.h"
 
 #include <glad/glad.h>
@@ -28,20 +27,17 @@ namespace Lisa {
 		m_ImGuiLayer = new ImGuiLayer();
 		m_LayerStack.PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
-
-		glGenBuffers(1, &m_VertexBuffer);
-		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
-
 		float vertices[3 * 6] =
 		{
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-			0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-			0.f, 0.5f, 0.f,    0.0f, 0.0f, 1.0f
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.0f, 0.0f,
+			0.5f, -0.5f, 0.0f, 0.0f, 0.2f, 0.0f,
+			0.f, 0.5f, 0.f,    0.0f, 0.0f, 0.2f
 		};
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+		glGenVertexArrays(1, &m_VertexArray);
+		glBindVertexArray(m_VertexArray);
+		m_Vb = VertexBuffer::Create(vertices, sizeof(vertices));
+		m_Vb->Bind();
 
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void*)0);
 		glEnableVertexAttribArray(0);
@@ -49,7 +45,7 @@ namespace Lisa {
 		glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void *) (sizeof(float) * 3));
 		glEnableVertexAttribArray(1);
 
-		m_Shader = new OpenGLShader(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader"));
+		m_Shader = Shader::Create(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader"));
 	}
 
 
