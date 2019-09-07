@@ -46,6 +46,9 @@
     <ClInclude Include="src\Lisa\Events\MouseEvent.h">
       <Filter>Lisa\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\File.h">
+      <Filter>Lisa</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lisa\ImGui\ImGuiLayer.h">
       <Filter>Lisa\ImGui</Filter>
     </ClInclude>
@@ -67,6 +70,9 @@
     <ClInclude Include="src\Lisa\MouseButtonCodes.h">
       <Filter>Lisa</Filter>
     </ClInclude>
+    <ClInclude Include="src\Lisa\Renderer\Buffer.h">
+      <Filter>Lisa\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Lisa\Renderer\GraphicsContext.h">
       <Filter>Lisa\Renderer</Filter>
     </ClInclude>
@@ -76,7 +82,13 @@
     <ClInclude Include="src\Lisa\Window.h">
       <Filter>Lisa</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
       <Filter>Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -86,8 +98,7 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\lspch.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
-    <ClInclude Include="src\Lisa\File.h" />
+    <ClInclude Include="src\Lisa\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Lisa\Application.cpp">
@@ -111,7 +122,16 @@
     <ClCompile Include="src\Lisa\Log.cpp">
       <Filter>Lisa</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lisa\Renderer\Buffer.cpp">
+      <Filter>Lisa\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -121,7 +141,7 @@
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\lspch.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
-    <ClCompile Include="src\Lisa\File.cpp" />
+    <ClCompile Include="src\Lisa\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Lisa\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
