@@ -29,9 +29,9 @@ namespace Lisa {
 
 		float vertices[3 * 6] =
 		{
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.0f, 0.0f,
-			0.5f, -0.5f, 0.0f, 0.0f, 0.2f, 0.0f,
-			0.f, 0.5f, 0.f,    0.0f, 0.0f, 0.2f
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.2f,
+			0.5f, -0.5f, 0.0f, 0.2f, 0.8f, 0.2f,
+			0.f, 0.5f, 0.f,    0.2f, 0.2f, 0.8f
 		};
 
 		glGenVertexArrays(1, &m_VertexArray);
@@ -65,8 +65,6 @@ namespace Lisa {
 			if (e.Handled)
 				break;
 		}
-		//ed.EventFn(OnCloseEvent);
-		//ed.Dispatch(EventFn(OnCloseEvent));
 		LS_CORE_TRACE("{0}",e);
 	}
 
@@ -108,7 +106,5 @@ namespace Lisa {
 
 			m_Window->OnUpdate();
 		}
-	
 	}
-
 }

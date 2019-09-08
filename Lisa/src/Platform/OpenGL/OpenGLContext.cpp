@@ -21,8 +21,6 @@ namespace Lisa
 
 	void OpenGLContext::SwapBuffers()
 	{
-		glBegin(GL_TRIANGLES);
-		glEnd();
 		glfwSwapBuffers(m_Window);
 	}
 }

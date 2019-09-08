@@ -3,12 +3,12 @@
 #include "Core.h"
 #include "Window.h"
 #include "Events/Event.h"
-#include "Events\ApplicationEvent.h"
+#include "Events/ApplicationEvent.h"
 #include "Lisa/LayerStack.h"
 #include "Lisa/ImGui/ImGuiLayer.h"
 #include "Lisa/Renderer/Buffer.h"
 
-#include <Lisa\Renderer\Shader.h>
+#include "Lisa/Renderer/Shader.h"
 
 namespace Lisa 
 {

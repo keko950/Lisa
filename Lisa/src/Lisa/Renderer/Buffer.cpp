@@ -8,7 +8,7 @@
 
 namespace Lisa
 {
-	VertexBuffer * Lisa::VertexBuffer::Create(float * vertices, uint32_t size)
+	VertexBuffer* VertexBuffer::Create(float * vertices, uint32_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -21,7 +21,7 @@ namespace Lisa
 		}
 	}
 
-	IndexBuffer * Lisa::IndexBuffer::Create(uint32_t * indices, uint32_t size)
+	IndexBuffer* IndexBuffer::Create(uint32_t * indices, uint32_t size)
 	{
 		return nullptr;
 	}
