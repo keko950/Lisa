@@ -8,7 +8,7 @@
 
 namespace Lisa
 {
-	OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size) : m_Vertices(vertices), m_Size(size)
+	OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size) : m_Vertices(vertices), m_Size(size), m_Layout({})
 	{
 		glGenBuffers(1, &m_RendererId);
 	}

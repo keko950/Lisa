@@ -16,6 +16,27 @@ namespace Lisa {
 
 	Application* Application::s_Instance = nullptr;
 
+	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+	{
+		switch (type)
+		{
+		case ShaderDataType::Float:		return GL_FLOAT;
+		case ShaderDataType::Float2:	return GL_FLOAT;
+		case ShaderDataType::Float3:	return GL_FLOAT;
+		case ShaderDataType::Float4:	return GL_FLOAT;
+		case ShaderDataType::Mat3:		return GL_FLOAT;
+		case ShaderDataType::Mat4:		return GL_FLOAT;
+		case ShaderDataType::Int:		return GL_INT;
+		case ShaderDataType::Int2:		return GL_INT;
+		case ShaderDataType::Int3:		return GL_INT;
+		case ShaderDataType::Int4:		return GL_INT;
+		case ShaderDataType::Bool:		return GL_BOOL;
+		}
+
+		LS_CORE_ASSERT(false, "Unknown shader type");
+		return 0;
+	}
+
 	Application::Application()
 	{
 		LS_CORE_ASSERT(!s_Instance, "Application Already Exists!")
@@ -39,11 +60,23 @@ namespace Lisa {
 		m_Vb = VertexBuffer::Create(vertices, sizeof(vertices));
 		m_Vb->Bind();
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void*)0);
-		glEnableVertexAttribArray(0);
+		{
+			BufferLayout layout = {
+				{ShaderDataType::Float3, "a_Position", true},
+				{ShaderDataType::Float3, "a_Color", true}
+			};
 
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE, sizeof(float) * 6, (void *) (sizeof(float) * 3));
-		glEnableVertexAttribArray(1);
+			m_Vb->SetLayout(layout);
+		}
+
+		int index = 0;
+		const auto& layout = m_Vb->GetLayout();
+		for (const auto& element : layout)
+		{
+			glVertexAttribPointer(index, element.GetElementCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
+			glEnableVertexAttribArray(index);
+			index++;
+		}
 
 		m_Shader = Shader::Create(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader"));
 	}

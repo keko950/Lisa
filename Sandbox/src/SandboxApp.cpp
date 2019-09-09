@@ -26,8 +26,7 @@ public:
 
 	void OnEvent(Lisa::Event& e) override
 	{
-		LS_INFO("{0}", e.GetName());
-		e.Handled = true;
+		//LS_INFO("{0}", e.GetName());
 	}
 };
 
