@@ -78,7 +78,7 @@ namespace Lisa {
 			index++;
 		}
 
-		m_Shader = Shader::Create(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader"));
+		m_Shader = Shader::Create(File::Read("C:/Users/Gibe/Desktop/vertex.shader"), File::Read("C:/Users/Gibe/Desktop/fragment.shader"));
 	}
 
 
