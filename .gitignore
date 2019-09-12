@@ -2,4 +2,7 @@ bin/
 bin/*
 .vs/
 bin-int/
+*.vcxproj*
+**/*.vcxproj*
+
 
