@@ -21,9 +21,17 @@ namespace Lisa
 		}
 	}
 
-	IndexBuffer* IndexBuffer::Create(uint32_t * indices, uint32_t size)
+	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size)
 	{
-		return nullptr;
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::OpenGL:
+			return new OpenGLIndexBuffer(indices, size);
+			break;
+		default:
+			return nullptr;
+			break;
+		}
 	}
 
 }
