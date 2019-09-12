@@ -27,14 +27,14 @@ namespace Lisa
 	class OpenGLIndexBuffer : public IndexBuffer
 	{
 	public:
-		OpenGLIndexBuffer(uint32_t indexes, uint32_t size);
+		OpenGLIndexBuffer(uint32_t* indexes, uint32_t size);
 		virtual ~OpenGLIndexBuffer();
 
 		virtual void Bind() const;
 		virtual void Unbind() const;
 	private:
 		uint32_t m_RendererId;
-		uint32_t m_Indexes;
+		uint32_t* m_Indexes;
 		uint32_t m_Size;
 		
 	};

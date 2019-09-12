@@ -32,7 +32,7 @@ namespace Lisa
 
 	/////////////////INDEX BUFFER/////////////////////////
 
-	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t indexes, uint32_t size) : m_Indexes(indexes), m_Size(size)
+	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indexes, uint32_t size) : m_Indexes(indexes), m_Size(size)
 	{
 		glGenBuffers(1, &m_RendererId);
 	}
