@@ -7,6 +7,7 @@
 #include "Lisa/LayerStack.h"
 #include "Lisa/ImGui/ImGuiLayer.h"
 #include "Lisa/Renderer/Buffer.h"
+#include "Lisa/Renderer/VertexArray.h"
 
 #include "Lisa/Renderer/Shader.h"
 
@@ -37,12 +38,16 @@ namespace Lisa
 
 	private:
 		ImGuiLayer* m_ImGuiLayer;
-		VertexBuffer* m_Vb;
-		bool OnCloseEvent(WindowCloseEvent &event);
+		std::shared_ptr<VertexBuffer> m_Vb;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_Va;
 		std::unique_ptr<Window> m_Window;
+
+		bool OnCloseEvent(WindowCloseEvent &event);
 		bool m_Running = true;
+
 		LayerStack m_LayerStack;
-		Shader* m_Shader;
+		
 		static Application* s_Instance;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;

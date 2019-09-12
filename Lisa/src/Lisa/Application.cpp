@@ -16,27 +16,6 @@ namespace Lisa {
 
 	Application* Application::s_Instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-		case ShaderDataType::Float:		return GL_FLOAT;
-		case ShaderDataType::Float2:	return GL_FLOAT;
-		case ShaderDataType::Float3:	return GL_FLOAT;
-		case ShaderDataType::Float4:	return GL_FLOAT;
-		case ShaderDataType::Mat3:		return GL_FLOAT;
-		case ShaderDataType::Mat4:		return GL_FLOAT;
-		case ShaderDataType::Int:		return GL_INT;
-		case ShaderDataType::Int2:		return GL_INT;
-		case ShaderDataType::Int3:		return GL_INT;
-		case ShaderDataType::Int4:		return GL_INT;
-		case ShaderDataType::Bool:		return GL_BOOL;
-		}
-
-		LS_CORE_ASSERT(false, "Unknown shader type");
-		return 0;
-	}
-
 	Application::Application()
 	{
 		LS_CORE_ASSERT(!s_Instance, "Application Already Exists!")
@@ -55,9 +34,10 @@ namespace Lisa {
 			0.f, 0.5f, 0.f,    0.2f, 0.2f, 0.8f
 		};
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
-		m_Vb = VertexBuffer::Create(vertices, sizeof(vertices));
+		m_Va.reset(VertexArray::Create(1));
+		m_Va->Bind();
+
+		m_Vb.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 		m_Vb->Bind();
 
 		{
@@ -69,16 +49,9 @@ namespace Lisa {
 			m_Vb->SetLayout(layout);
 		}
 
-		int index = 0;
-		const auto& layout = m_Vb->GetLayout();
-		for (const auto& element : layout)
-		{
-			glVertexAttribPointer(index, element.GetElementCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
-			glEnableVertexAttribArray(index);
-			index++;
-		}
+		m_Va->AddVertexBuffer(m_Vb);
 
-		m_Shader = Shader::Create(File::Read("C:/Users/Gibe/Desktop/vertex.shader"), File::Read("C:/Users/Gibe/Desktop/fragment.shader"));
+		m_Shader.reset(Shader::Create(File::Read("C:/Users/Gibe/Desktop/vertex.shader"), File::Read("C:/Users/Gibe/Desktop/fragment.shader")));
 	}
 
 
