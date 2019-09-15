@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Event.h"
-
 namespace Lisa
 {
 	class LISA_API KeyEvent : public Event 

@@ -26,9 +26,9 @@ namespace Lisa
 		return 0;
 	}
 
-	OpenGLVertexArray::OpenGLVertexArray(unsigned int size)
+	OpenGLVertexArray::OpenGLVertexArray()
 	{
-		glGenVertexArrays(size, &m_VertexArrayID);
+		glGenVertexArrays(1, &m_VertexArrayID);
 	}
 
 	void OpenGLVertexArray::Bind() const

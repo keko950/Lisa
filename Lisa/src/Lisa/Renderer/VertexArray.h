@@ -14,6 +14,9 @@ namespace Lisa
 		virtual void AddVertexBuffer(std::shared_ptr<VertexBuffer> vb) = 0;
 		virtual void AddIndexBuffer(std::shared_ptr<IndexBuffer> ib) = 0;
 
-		static VertexArray* Create(unsigned int size);
+		virtual std::shared_ptr<IndexBuffer> GetIndexBuffer() const = 0;
+		virtual std::vector<std::shared_ptr<VertexBuffer>> GetVertexBuffers() const = 0;
+
+		static VertexArray* Create();
 	};
 }

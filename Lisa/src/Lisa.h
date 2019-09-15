@@ -10,7 +10,6 @@
 #include "Lisa/KeyCodes.h"
 #include "Lisa/MouseButtonCodes.h"
 #include "Lisa/ImGui/ImGuiLayer.h"
-
 // --- Entry Point ---
 
 #include "Lisa/EntryPoint.h"

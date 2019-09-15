@@ -30,8 +30,10 @@ namespace Lisa
 		OpenGLIndexBuffer(uint32_t* indexes, uint32_t size);
 		virtual ~OpenGLIndexBuffer();
 
-		virtual void Bind() const;
-		virtual void Unbind() const;
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
+
+		virtual uint32_t GetCount() const override;
 	private:
 		uint32_t m_RendererId;
 		uint32_t* m_Indexes;

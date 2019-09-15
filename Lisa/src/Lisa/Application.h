@@ -8,6 +8,8 @@
 #include "Lisa/ImGui/ImGuiLayer.h"
 #include "Lisa/Renderer/Buffer.h"
 #include "Lisa/Renderer/VertexArray.h"
+#include "Lisa/Renderer/RendererAPI.h"
+#include "Lisa/Renderer/Renderer.h"
 
 #include "Lisa/Renderer/Shader.h"
 

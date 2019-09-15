@@ -40,7 +40,9 @@ project "Lisa"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	defines
@@ -65,7 +67,7 @@ project "Lisa"
 		"GLFW",
 		"opengl32.lib",
 		"GLAD",
-		"IMGUI"
+		"IMGUI",
 	}
 
 	filter "system:windows"
@@ -112,7 +114,9 @@ project "Sandbox"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -120,7 +124,7 @@ project "Sandbox"
 		"Lisa/vendor/spdlog/include",
 		"Lisa/src",
 		"Lisa/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.GLM}"
 	}
 
 	links

@@ -7,12 +7,12 @@
 
 namespace Lisa
 {
-	VertexArray * Lisa::VertexArray::Create(unsigned int size)
+	VertexArray * Lisa::VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexArray(size);
+		case RendererAPI::API::None: return nullptr;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		default:
 			return nullptr;
 		}

@@ -9,7 +9,7 @@ namespace Lisa
 	class LISA_API OpenGLVertexArray : public VertexArray
 	{
 	public:
-		OpenGLVertexArray(unsigned int size);
+		OpenGLVertexArray();
 
 		 void Bind() const override;
 		 void UnBind() const override;
@@ -17,12 +17,13 @@ namespace Lisa
 		 void AddVertexBuffer(std::shared_ptr<VertexBuffer> vb) override;
 		 void AddIndexBuffer(std::shared_ptr<IndexBuffer> ib) override;
 
-		 inline std::vector<std::shared_ptr<VertexBuffer>> GetVertexBuffers() const
+
+		 virtual inline std::vector<std::shared_ptr<VertexBuffer>> GetVertexBuffers() const override
 		 {
 			 return m_VertexBuffers;
 		 };
 
-		 inline std::shared_ptr<IndexBuffer> GetIndexBuffer() const
+		 virtual inline std::shared_ptr<IndexBuffer> GetIndexBuffer() const override
 		 {
 			 return m_IndexBuffer;
 		 };

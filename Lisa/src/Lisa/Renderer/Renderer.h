@@ -1,27 +1,25 @@
 #pragma once
 
 #include "Lisa\Core.h"
+#include "RendererAPI.h"
 
 namespace Lisa
 {
-	enum class RendererAPI
-	{
-		None = 0, 
-		OpenGL = 1
-	};
 
 	class LISA_API Renderer
 	{
 	public:
-		inline static void SetAPI(RendererAPI api)
+
+		static void Init();
+
+		static void BeginScene();
+		static void EndScene();
+
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
+
+		inline static RendererAPI::API GetAPI()
 		{
-			s_RendererAPI = api;
+			return RendererAPI::GetAPI();
 		};
-		inline static RendererAPI GetAPI()
-		{
-			return s_RendererAPI;
-		};
-	private:
-		static RendererAPI s_RendererAPI;
 	};
 }

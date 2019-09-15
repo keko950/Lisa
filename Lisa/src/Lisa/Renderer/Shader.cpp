@@ -11,7 +11,7 @@ namespace Lisa
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::OpenGL:
+			case RendererAPI::API::OpenGL:
 				return new OpenGLShader(vertexSrc, fragmentSrc);
 				break;
 			default:

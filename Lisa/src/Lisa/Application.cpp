@@ -4,6 +4,9 @@
 #include "Events/ApplicationEvent.h"
 #include "Log.h"
 
+#include "Lisa/Renderer/RendererCommand.h"
+#include "Lisa/Renderer/Renderer.h"
+
 #include "File.h"
 
 #include <glad/glad.h>
@@ -34,7 +37,7 @@ namespace Lisa {
 			0.f, 0.5f, 0.f,    0.2f, 0.2f, 0.8f
 		};
 
-		m_Va.reset(VertexArray::Create(1));
+		m_Va.reset(VertexArray::Create());
 		m_Va->Bind();
 
 		m_Vb.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -51,7 +54,7 @@ namespace Lisa {
 
 		m_Va->AddVertexBuffer(m_Vb);
 
-		m_Shader.reset(Shader::Create(File::Read("C:/Users/Gibe/Desktop/vertex.shader"), File::Read("C:/Users/Gibe/Desktop/fragment.shader")));
+		m_Shader.reset(Shader::Create(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader")));
 	}
 
 
@@ -93,12 +96,14 @@ namespace Lisa {
 	void Application::Run() 
 	{
 		while(m_Running) 
-		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+		{			
+			RendererCommand::SetClearColor({0.2, 0.2, 0.2, 0.8});
+			RendererCommand::Clear();
+			
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			Renderer::BeginScene();
+			Renderer::Submit(m_Va);
+			Renderer::EndScene();
 			//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
  			for (Layer* layer : m_LayerStack)
