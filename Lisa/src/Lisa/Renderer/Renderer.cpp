@@ -22,7 +22,6 @@ namespace Lisa
 
 	void Renderer::Submit(const std::shared_ptr<VertexArray>& VAO)
 	{
-		VAO->Bind();
 		RendererCommand::Draw(VAO);
 	}
 }

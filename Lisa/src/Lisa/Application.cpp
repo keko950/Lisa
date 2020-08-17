@@ -54,7 +54,7 @@ namespace Lisa {
 
 		m_Va->AddVertexBuffer(m_Vb);
 
-		m_Shader.reset(Shader::Create(File::Read("C:/Users/Gilberto/Desktop/vertex.shader"), File::Read("C:/Users/Gilberto/Desktop/fragment.shader")));
+		m_Shader.reset(Shader::Create(File::Read("C:/Users/Gibe/Desktop/vertex.shader"), File::Read("C:/Users/Gibe/Desktop/fragment.shader")));
 	}
 
 
@@ -104,17 +104,16 @@ namespace Lisa {
 			Renderer::BeginScene();
 			Renderer::Submit(m_Va);
 			Renderer::EndScene();
-			//glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
-
+			
  			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
 				layer->OnImGuiRender();
-
+				
 			m_ImGuiLayer->End();
-
+		
 			m_Window->OnUpdate();
 		}
 	}
